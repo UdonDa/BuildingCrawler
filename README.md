@@ -9,3 +9,4 @@
 ### 環境
 python 3.6.2
 pip install python-google-places
+brew install jsonpp  
