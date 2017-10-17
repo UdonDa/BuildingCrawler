@@ -10,3 +10,9 @@
 python 3.6.2
 pip install python-google-places
 brew install jsonpp  
+
+
+### 使い方
+(1) 環境構築  
+(2) src/keyHolder/keyHolder.py の中に、自分のAPIKEYをセット
+(3) python google_places.py
