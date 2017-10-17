@@ -33,11 +33,6 @@ class GooglePlacesCrawler():
         url += "location={}".format(location)
         url += "&radius={}".format(str(radius))
 
-        #try:
-        #    url += "&keyword=.{}".format(quote(seachitems["keyword"]))
-        #except:
-        #    pass
-
         try:
             url += "&types={}".format(quote(seachitems["types"]))
         except:
@@ -81,8 +76,12 @@ class GooglePlacesCrawler():
         return self.send_req(url)
 
     def G_radarsearch(self, location, radius, searchitems):
-        # 検索！！！！！！！！
-        #url = "search/json?location=35.6814,139.7674&radius=3000&types=lodging&language=ja&sensor=false&key={}".format(self.G_APIKEY)
+        """
+        :param location: (ex)"35.562479,139.716051"
+        :param radius: (ex)1000
+        :param searchitems: (ex) {"types": "atm"}  下の表参考
+        :return: request
+        """
         url = self.make_radarsearch_req(location, radius, searchitems)
         return self.send_req(url)
 
@@ -97,6 +96,7 @@ class GooglePlacesCrawler():
 
 def main():
     googlePlacesCrawler = GooglePlacesCrawler()
+    #TODO: 下の３つの値を欲しいものに変える
     location = "35.562479,139.716051"
     radius = 1000
     searchitems = {"types": "atm"}
