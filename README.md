@@ -14,5 +14,5 @@ brew install jsonpp
 
 ### 使い方
 (1) 環境構築  
-(2) src/keyHolder/keyHolder.py の中に、自分のAPIKEYをセット
+(2) src/keyHolder/keyHolder.py の中に、自分のAPIKEYをセット  
 (3) python google_places.py
