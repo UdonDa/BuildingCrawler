@@ -1,2 +1,2 @@
 def apiKey():
-    return "自分のAPIKey"
+    return "AIzaSyBcyTZYxBbc7-OIYx3EmsZDYY5Qg4jh0Nc"

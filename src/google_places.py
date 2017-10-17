@@ -98,11 +98,11 @@ def main():
     googlePlacesCrawler = GooglePlacesCrawler()
     #TODO: 下の３つの値を欲しいものに変える
     location = "35.562479,139.716051"
-    radius = 1000
-    searchitems = {"types": "atm"}
+    radius = 100
+    searchitems = {"types": "book_store"}
 
     b = googlePlacesCrawler.G_radarsearch(location=location, radius=radius, searchitems=searchitems)
-    print(b)
+    print(b.decode("utf-8"))
 
 if __name__ == "__main__":
     main()
