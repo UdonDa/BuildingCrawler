@@ -4,6 +4,10 @@ from urllib.request import *
 from urllib.parse import *
 from keyHolder import keyHolder
 
+import json
+
+import argparse
+
 
 class GooglePlacesCrawler():
     def __init__(self):
@@ -94,18 +98,41 @@ class GooglePlacesCrawler():
         return self.send_req(url)
 
 
-def main():
+def main(args):
     googlePlacesCrawler = GooglePlacesCrawler()
     #TODO: 下の３つの値を欲しいものに変える
-    location = "35.562479,139.716051"
-    radius = 100
-    searchitems = {"types": "book_store"}
+    location = "%f,%f" % (args.latitude, args.longtitude)
+    radius = args.radius
+    searchitems = {"types": args.types}
 
     b = googlePlacesCrawler.G_radarsearch(location=location, radius=radius, searchitems=searchitems)
-    print(b.decode("utf-8"))
+
+    res_decoded = b.decode("utf-8")
+    print(res_decoded)
+
+    # jsonをパースしてcsvとして保存
+
+    json_data = json.loads(res_decoded)["results"]
+    fp = open(args.out,'w')
+    fp.write("name,緯度,経度\n")
+    for item in json_data:
+        fp.write("%s,%f,%f\n" %(item["name"], item["geometry"]["location"]["lat"], item["geometry"]["location"]["lng"]))
+
+    fp.close()
+
+    
+
+
 
 if __name__ == "__main__":
-    main()
+    ps = argparse.ArgumentParser()
+    ps.add_argument("latitude",type=float,default = 35.450918)
+    ps.add_argument("longtitude",type=float,default = 139.631073)
+    ps.add_argument("radius",type=int, default = 2000)
+    ps.add_argument("types",type=str,default = "hospital")
+    ps.add_argument("--out",type=str,default = "GooglePlaceResults.csv")
+    args = ps.parse_args()
+    main(args)
 
     """
 accounting
